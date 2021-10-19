@@ -32,10 +32,17 @@ public class LoggerModule extends AbstractModule {
     @Override
     protected void configure() {
         switch (typeLogger) {
-            case "console"      -> bind(Logger.class).to(ConsoleLogger.class);
-            case "file"         -> bind(Logger.class).toProvider(File.class);
-            case "composite"    -> bind(Logger.class).toProvider(Composite.class);
-            default             -> System.out.println("Unknown type");
+            case "console":
+                bind(Logger.class).to(ConsoleLogger.class);
+                break;
+            case "file":
+                bind(Logger.class).toProvider(File.class);
+                break;
+            case "composite":
+                bind(Logger.class).toProvider(Composite.class);
+                break;
+            default:
+                System.out.println("Unknown type");
         }
         bind(CounterLines.class).toInstance(counterLines);
     }
